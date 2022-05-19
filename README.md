@@ -10,7 +10,7 @@ BPMN (Business Process Modeling Notation) will provide businesses with the capab
 
 You could create and edit BPMN 2.0 diagrams in your browser on [BPMN.io](https://demo.bpmn.io/) web site.  Install a plugin on your IDE will help your draw flow efficently. On Eclipse： help -> Install New Software -> http://www.activiti.org/designer/update/
 
-![1](readme_img\1.png)
+![1](readme_img/1.png)
 
 ### Quick start
 
@@ -79,7 +79,7 @@ public void getProcessInstanceDiagram(String businessKey, OutputStream output);
 
 get process instance diagram API will highlight the flow that is executed, It may help you  analysis the process instance problems.
 
-![2](readme_img\2.png)
+![2](readme_img/2.png)
 
 #### WorkflowTaskService
 
