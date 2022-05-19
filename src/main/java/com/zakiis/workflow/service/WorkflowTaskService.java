@@ -62,6 +62,11 @@ public class WorkflowTaskService {
 		taskService.claim(taskId, userId);
 	}
 	
+	/**
+	 * complete task
+	 * @param taskid current task id
+	 * @param params parameters that task need
+	 */
 	public void completeTask(String taskid, Map<String, Object> params) {
 		taskService.complete(taskid, params);
 	}
