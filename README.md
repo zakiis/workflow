@@ -110,3 +110,54 @@ Further using about work flow API could find on test class:
 - ACT_RU_TASK - task need process
 - ACT_HI_PROCINST - history of process instance
 - ACT_HI_ACTINST - history of process instance flow node
+
+## Concept
+
+### Thread model
+
+Task defaults using current thread(Activiti main thread),  this may cause other process instance create or other tasks run if the task needs much time to process , besides, if you are deleting current process instance on a service task, the process instance transaction is not committed so you can't delete it. To avoid these problems, you can check the property `Asynchronous` so that it and after  will run in another thread.
+
+![3](readme_img/3.png)
+
+### User Task
+
+User task is a type of task that need user to process, you should call complete task method to make the flow to next node.
+
+```java
+TaskDTO task = workflowTaskService.getTask(businessKey);
+workflowTaskService.completeTask(task.getId(), params);
+```
+
+### Service Task
+
+The service task provides the ability to run java codes to implements your business. That class must implements the interface `JavaDelegate`
+
+```java
+public class MyTask implements JavaDelegate {
+	
+	@Override
+	public void execute(DelegateExecution execution) {
+		String businessKey = execution.getProcessInstanceBusinessKey();
+        //do something
+    }
+}
+```
+
+### Error Boundary Event
+
+You may got some error on a task or a sub process and need do something, error boundary event can catch the specified error so you can deal with it.
+
+![4](readme_img/4.png)
+
+boundary event will catch all the error event if you don't specify the error code. In service task, you can throw a BpmnError to trigger it.
+
+```
+public class MyTask implements JavaDelegate {
+	
+	@Override
+	public void execute(DelegateExecution execution) {
+		throw new BpmnError("10001", "call system1 got xxx excpetion");
+    }
+}
+```
+

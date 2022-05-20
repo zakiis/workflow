@@ -31,7 +31,7 @@ public class ApiAdaptorWorkflowTest {
 	System2Callback system2Callback;
 
 	@Test
-	public void test() throws IOException {
+	public void test() throws IOException, InterruptedException {
 		//deploy workflow definition
 		byte[] definitionBytes = Files.readAllBytes(Paths.get("src/main/resources/bpmn/api-adaptor.bpmn20.xml"));
 		workflowRepositoryService.deployment(new String(definitionBytes));
@@ -43,6 +43,7 @@ public class ApiAdaptorWorkflowTest {
 		workflowRuntimeService.startProcess(processDefinitionKey, businessKey, null, params);
 		//system2 callback
 		Scanner scanner = new Scanner(System.in);
+		Thread.sleep(2000L);
 		System.out.print("please input system2 reponse data:");
 		String system2Response = scanner.nextLine();
 		system2Callback.system2Callback(businessKey, system2Response);

@@ -1,5 +1,6 @@
 package com.zakiis.workflow.service.task;
 
+import org.activiti.engine.delegate.BpmnError;
 import org.activiti.engine.delegate.DelegateExecution;
 import org.activiti.engine.delegate.JavaDelegate;
 
@@ -16,8 +17,8 @@ public class CallSystem1Task implements JavaDelegate {
 		System.out.println("call system 1 task done");
 		
 		WorkflowRuntimeService workflowRuntimeService = ApplicationContextHolder.get().getBean(WorkflowRuntimeService.class);
-		workflowRuntimeService.setVariable(execution.getId(), "requestResult", "fail");
 		workflowRuntimeService.setVariable(execution.getId(), "reason", "call system1 got xxx exception");
+		throw new BpmnError("10001", "call system1 got xxx excpetion");
 	}
 
 }
