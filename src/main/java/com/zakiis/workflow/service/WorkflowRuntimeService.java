@@ -151,5 +151,9 @@ public class WorkflowRuntimeService {
 		}
 		return highlightedFlows;
 	}
+
+	public void setVariable(String executionId, String key, Object value) {
+		runtimeService.setVariable(executionId, key, value);
+	}
 	
 }

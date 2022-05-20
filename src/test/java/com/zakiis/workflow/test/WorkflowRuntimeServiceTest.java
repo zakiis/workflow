@@ -36,7 +36,7 @@ public class WorkflowRuntimeServiceTest {
 	
 	@Test
 	public void testGetProcessInstanceDiagram() throws IOException {
-		String businessKey = "f365a4ce-0c71-4b7b-ab5d-dbd6bec32e58";
+		String businessKey = "9bafc35a-3ec4-4553-b9ad-870ad534f982";
 		FileOutputStream fos = new FileOutputStream(new File("target/" + businessKey + ".png"));
 		workflowRuntimeService.getProcessInstanceDiagram(businessKey, fos);
 		fos.close();

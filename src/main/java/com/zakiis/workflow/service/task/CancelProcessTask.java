@@ -6,18 +6,16 @@ import org.activiti.engine.delegate.JavaDelegate;
 import com.zakiis.spring.util.ApplicationContextHolder;
 import com.zakiis.workflow.service.WorkflowRuntimeService;
 
-public class CallSystem1Task implements JavaDelegate {
-	
+public class CancelProcessTask implements JavaDelegate {
+
 	@Override
 	public void execute(DelegateExecution execution) {
-		System.out.println("call system 1 task start");
+		System.out.println("Cancel process task start");
 		String businessKey = execution.getProcessInstanceBusinessKey();
-		System.out.println("search standard request data from db using business key:" + businessKey);
-		System.out.println("call system 1 task done");
-		
 		WorkflowRuntimeService workflowRuntimeService = ApplicationContextHolder.get().getBean(WorkflowRuntimeService.class);
-		workflowRuntimeService.setVariable(execution.getId(), "requestResult", "fail");
-		workflowRuntimeService.setVariable(execution.getId(), "reason", "call system1 got xxx exception");
+		String reason = (String)workflowRuntimeService.getVariables(execution.getId()).get("reason");
+		workflowRuntimeService.deleteProcessInstance(businessKey, reason);
+		System.out.println("Cancel process task end, business key:" + businessKey);
 	}
 
 }

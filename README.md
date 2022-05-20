@@ -100,3 +100,13 @@ Further using about work flow API could find on test class:
 - WorkflowRuntimeServiceTest
 - WorkflowTaskServiceTest
 - ApiAdaptorWorkflowTest
+
+### Core Tables
+
+- ACT_RE_DEPLOYMENT process definition deployment
+- ACT_RE_PROCDEF process definition
+- ACT_GE_BYTEARRAY byte stream, for example  process deifnition xml, diagram
+- ACT_RU_EXECUTION - process instance run process.
+- ACT_RU_TASK - task need process
+- ACT_HI_PROCINST - history of process instance
+- ACT_HI_ACTINST - history of process instance flow node

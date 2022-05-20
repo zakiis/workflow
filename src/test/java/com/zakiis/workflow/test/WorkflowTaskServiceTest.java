@@ -30,7 +30,7 @@ public class WorkflowTaskServiceTest {
 	
 	@Test
 	public void testCompleteTask() throws IOException {
-		String businessKey = "deeb7058-265c-48a2-94aa-aee9ad1aec69";
+		String businessKey = "676fb688-2fee-439b-b0ea-bf1088a3c650";
 		TaskDTO task = workflowTaskService.getTask(businessKey);
 		String description = fillParams(task.getDescription(), task.getVariables());
 		System.out.println(description);
